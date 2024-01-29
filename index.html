@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ejemplo Storage</h1>
+    <h3>Valor actual: <span id="txtMascota" style="color: blue;"></span></h3>
+    <p>
+        Agrega el nombre de tu mascota y presiona el botón "Agregar storage" para visualizar la persistencia del dato, si cierrar esta ventana o el navegador y vuelves a ingresar, el dato se mantendrá.
+    </p>
+
+    <input type="text" id="inputMascota">
+
+    <button type="button" id="btnAgregarStorage">Agregar storage</button>
+    <button type="button" id="btnLimpiarStorage">Limpiar storage</button>
+</body>
+</html>
+
+<script>
+    console.log("Ejemplo");
+    let btnAgregarStorage = document.getElementById("btnAgregarStorage");
+    let btnLimpiarStorage = document.getElementById("btnLimpiarStorage");
+    let inputMascota = document.getElementById("inputMascota");
+    let txtMascota = document.getElementById("txtMascota");
+
+    btnAgregarStorage.addEventListener("click", function(){
+        localStorage.setItem("mascota", inputMascota.value);
+        txtMascota.innerHTML = localStorage.getItem("mascota");
+    });
+
+    btnLimpiarStorage.addEventListener("click", function(){
+        localStorage.removeItem("mascota");
+        txtMascota.innerHTML = localStorage.getItem("mascota");
+        window.location.reload();
+    });
+
+    window.addEventListener("load", function(){
+        txtMascota.innerHTML = localStorage.getItem("mascota") || "No hay datos";
+    });
+</script>
